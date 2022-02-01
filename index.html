@@ -1,0 +1,503 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>RegExp</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/moon.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section 
+				data-background-image="https://devanych.ru/uploads/images/thumbs/regexp.png" 
+				data-background-size="100%" 
+				data-background-repeat="no-repeat">													
+				</section>
+
+				<section data-background-video="https://upload.wikimedia.org/wikipedia/commons/transcoded/a/a7/XScreensaver_GLMatrix.webm/XScreensaver_GLMatrix.webm.480p.vp9.webm"
+				
+				data-background-video-loop 
+				data-background-video-muted>	
+				>
+					<img data-src="https://image.slidesharecdn.com/regex-public-131204120546-phpapp01/95/regex-101-4-638.jpg?cb=1432679343"
+					width="77%">
+					<br>											
+				</section>
+
+
+
+				<section>
+					<section>
+						<h1 style="color: cornflowerblue;">What Is a Regular Expression? </h1>														
+					</section>
+
+					<section>											
+						<img data-src="https://geniy1s.ru/wp-content/uploads/2021/04/image-245.png">
+					</section>
+
+					<section>											
+						<img data-src="https://habrastorage.org/r/w1560/webt/7g/nw/vd/7gnwvdmenismqn7qg2xe8lionrq.png"
+						style="width: 50%;">
+						<img data-src="https://habrastorage.org/r/w1560/webt/sm/5h/xc/sm5hxcwfelqcwav7xol1i5zvklk.png"
+						style="width: 50%;">
+					</section>
+				</section>	
+	
+				<section>
+					<section>
+						<h3 style="color: cornflowerblue;">Syntax</h3>
+						<img data-src="https://miro.medium.com/max/1400/1*ZVlIZ1ZYC6rASz-dYPzhZQ.jpeg" 
+						width = "60%">	
+					</section>								
+
+					<section>
+						<h2>The “long” syntax:</h2>	
+						<pre>
+							<code data-trim data-noescape>
+								const re = new RegExp("pattern", "flags");
+
+								const re = new RegExp("ab+c", 'i');
+							</code>
+						</pre>
+					</section>					
+					<section>
+						<h2>The “short” syntax:</h2>
+						<pre>
+							<code data-trim data-noescape>
+								regexp = /pattern/; // no flags
+								const re = /ab+c/;
+								
+								regexp = /pattern/gmi; // with flags g,m and i
+								const re = /ab+c/gmi;
+							</code>
+						</pre>	
+					</section>	
+
+					<section>
+						<h3>Main difference between the two ways</h3>
+						<br>
+						<pre>
+							<code data-trim data-noescape>
+								let regexp = new RegExp(`<${tag}>`);
+							</code>
+						</pre>	
+					</section>
+				
+				</section>
+											
+				<section>
+					<section>
+						<h1 style="color: cornflowerblue;">Patterns</h1>
+						<ul>
+							<li>Simple Patterns</li>
+							<li>Combinations of common and special characters</li>
+						</ul>						
+					</section>
+
+					<section>
+						<h2 style="color: cornflowerblue;"> Simple Patterns </h2>
+						<pre>
+							<code data-trim data-noescape>
+								console.log("Hi, do you know your abc's?".match(/abc/));  
+								//  'abc'								
+
+								console.log("The plane arrived from Cambodia.".match(/abc/));  
+								//  null (no match)
+							</code>
+						</pre>						
+					</section>
+
+					<section>
+						<h2 style="color: cornflowerblue;"> Combinations of common and special characters </h2>
+						<pre>
+							<code data-trim data-noescape>
+
+								console.log("cbbabbbbcdebc".match( /ab*c/));  
+								//  'abbbbc'
+							</code>
+						</pre>
+						
+					</section>
+				</section>				
+
+				<section>
+					<section>
+						<h2 style="color: cornflowerblue;"> Character classes </h2> <br>
+						<p>\,  .,  \cX,  \d,  \D,  \f,  \n,  \r,  \s,  \S,  \t,  \v,  \w,  \W,  \0,  \xhh,  \uhhhh,  \uhhhhh,  [\b]</p>
+						<img data-src="https://avatars.mds.yandex.net/get-zen_doc/3964212/pub_5f37ba3d881ab95689eba756_5f37db2ba95b5667bf316c72/scale_1200"
+						width="17%">						
+					</section>
+
+					<section>
+						<h2 >Most used are:</h2>
+						<ul>
+							<li><span style="color:chocolate;">.</span> (“.” is  “dot”)  </li>
+							<li><span style="color: red;">\d</span> (“d” is from “digit”)  </li>
+							<li><span style="color: red;">\s</span> (“s” is from “space”)  </li>
+							<li><span style="color: red;">\w</span> (“w” is from “word”)   </li>							
+						</ul>
+						<br>
+						<br>					
+						<h4>Inverse to them classes</h4>
+						<ul>
+							<li><span style="color: rgb(54, 54, 175);">\D</span> 	(non-digit)</li>
+							<li><span style="color: rgb(54, 54, 175);">\S</span> 	(non-space)</li>
+							<li><span style="color: rgb(54, 54, 175);">\W</span>  (non-wordly character)</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2 style="color:chocolate;">.</h2> (“.” is  “dot”)
+						<pre>
+							<code data-trim data-noescape>
+								console.log( "Г".match(/./) );     // "Г"
+
+								console.log( "f".match(/./) );     // "f"
+
+								console.log( "8".match(/./) );     // "8"
+
+								console.log( "\n".match(/./) );    // null (no match) 
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h2 style="color: red; text-transform: lowercase;">\d</h2> (“d” is from “digit”)
+						<pre>
+							<code data-trim data-noescape>
+								console.log( "+7(903)-123-45-67".match(/\d/).join('') );  
+								// "79031234567"
+
+								console.log( "Hello World".match(/\d/) ); 
+								// null (no match)
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h2 style="color: red; text-transform: lowercase;">\s</h2> (“s” is from “space”)
+						<pre>
+							<code data-trim data-noescape>
+								console.log( "+7(903)-123-45-67".match(/\s/) );  
+								// null (no match)
+
+								console.log( "Hello World".match(/\d/) );        
+								//  [' ', index: 5, input: 'Hello World', groups: undefined]
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h2 style="color: red; text-transform: lowercase;">\w</h2> (“w” is from “word”)
+						<pre>
+							<code data-trim data-noescape>
+								console.log( "I love HTML5!".match(/\w\w\w\w/));    
+								//  'love'
+
+								console.log( "2022г".match(/\w\w\w\w/));            
+								// '2022'
+								
+								console.log( "2022г".match(/\w\w\w\w\w/));          
+								// null (no match)
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h2 style="color: rgb(54, 54, 175);">\D</h2> 	(non-digit)
+						<pre>
+							<code data-trim data-noescape>
+								console.log( "+7(903)-123-45-67".replace(/\D/g, "") ); 
+								// "79031234567"
+
+								console.log( "2022г".match(/\D/));                     
+								// 'г'
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h2 style="color: rgb(54, 54, 175);">\S</h2> 	(non-space)
+						<pre>
+							<code data-trim data-noescape>
+								console.log( "\nF1!".match(/\S\S/)); 
+								// "F1!"								
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h2 style="color: rgb(54, 54, 175);">\W</h2>  (non-wordly character)
+						<pre>
+							<code data-trim data-noescape>
+								console.log( "10000 years назад".match(/\W\W\W\W\W/)); 
+								// ' наза'
+							</code>
+						</pre>
+					</section>
+				</section>				
+
+				<section>					
+					<section>
+						<h3 style="color: cornflowerblue;">Flags</h3>
+						
+						<img data-src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5a501e98-2c3b-4b1d-9e54-5f10fb0a9e12/da5pp4z-5b7a92b1-f11e-4d57-b315-23abb0cbd888.png/v1/fill/w_1063,h_752,q_70,strp/flags_of_all_countries_in_the_world__202__by_matritum_da5pp4z-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTEzMiIsInBhdGgiOiJcL2ZcLzVhNTAxZTk4LTJjM2ItNGIxZC05ZTU0LTVmMTBmYjBhOWUxMlwvZGE1cHA0ei01YjdhOTJiMS1mMTFlLTRkNTctYjMxNS0yM2FiYjBjYmQ4ODgucG5nIiwid2lkdGgiOiI8PTE2MDAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.vlkCNPaKcrsdqv7jClanpc2CDA0Cd-hBKtl_Bwqgbpw"
+						width = "70%">
+					</section>
+
+					<section>						
+						<h6 style="color: cornflowerblue;"> RegExp flags in JavaScript: </h6>
+						<ul>
+							<li>i</li>
+							<li>g</li>
+							<li>m</li>
+							<li>s</li>
+							<li>u</li>
+							<li>y</li>
+						</ul>
+					</section>
+
+					<section>
+						<p style="color: cornflowerblue;">Flag <span style="color: red;">i</span> :</p>   
+						Enable case-insensitive mode <br>
+						
+						<pre>
+							<code data-trim data-noescape>								
+								let str = "Fee fi fo Fum";								
+
+								let myArray = str.match(/f/); 
+								console.log(myArray); /* ['f', index: 4, input: 'Fee fi fo Fum', groups: undefined] */
+
+								let myArrayI = str.match(/f/i);
+								console.log(myArrayI); /* ['F', index: 0, input: 'Fee fi fo Fum', groups: undefined] */
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<p style="color: cornflowerblue;">Flag <span style="color: red;">g</span> :</p>   
+						Enable search looks for all matches <br>
+						
+						<pre>
+							<code data-trim data-noescape>
+								let str = "Fee fi fo Fum";								
+
+								let myArray = str.match(/f/); 
+								console.log(myArray); 
+								/* ['f', index: 4, input: 'Fee fi fo Fum', groups: undefined] */
+
+								let myArrayG = str.match(/f/g); 
+								console.log(myArrayG); 
+								/* ['f', 'f']  on positions 4 and 7  */
+
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<p style="color: cornflowerblue;"> Flag <span style="color: red;">m</span> :</p>  
+						Enable Multiline mode  <br>
+						
+						<pre>
+							<code data-trim data-noescape>
+								let strStart = `1st place: Winnie
+								2nd place: Piglet
+								3rd place: Eeyore`;
+								
+								onsole.log( strStart.match(/^\d/g) ); // 1                      
+
+								console.log( strStart.match(/^\d/gm) ); // 1, 2, 3                
+								console.log( strStart.match(/^\d/mg) ); // 1, 2, 3                
+								
+								let strEnd = `Winnie: 1
+								Piglet: 2
+								Eeyore: 3`;
+
+								console.log( strEnd.match(/\d$/gm) ); // 1,2,3
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<p style="color: cornflowerblue;"> Flag <span style="color: red;">s</span> :</p>  
+						Enable “dotall” mode <br>
+						
+						<pre>
+							<code data-trim data-noescape>
+								let str = R\nB;
+
+								console.log( str.match(/R.B/)); // null (no match)     
+
+								console.log( str.match(/R.B/s));  // R\nB (match!)
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<p style="color: cornflowerblue;"> Flag <span style="color: red;">u</span> :</p> Enable full Unicode support. <br>
+												
+						<pre>
+							<code data-trim data-noescape>
+								let  str = `Prices: $2, €1, ¥9`;
+
+								console.log( str.match(/\p{Sc}\d/g) ); 
+								/* null (no match)  */
+								
+								console.log( str.match(/\p{Sc}\d/gu) ); 
+								/* $2,€1,¥9  */
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<p style="color: cornflowerblue;">Flag <span style="color: red;">y</span> :</p>  
+						Enable “Sticky” mode <br>
+						
+						<pre>
+							<code data-trim data-noescape>
+								let str = 'let varName = "value"';
+
+								let regexp = /\w+/y;
+
+								regexp.lastIndex = 3;
+								alert( regexp.exec(str) ); 
+								/* null (there's a space at position 3, not a word) */
+								
+								regexp.lastIndex = 4;
+								alert( regexp.exec(str) );
+								/* 'varName' (word at position 4)	*/
+							</code>
+						</pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h4 style="color: cornflowerblue;"> Escaping, special characters </h4>
+											
+						<ul style="color: rgb(100, 237, 100); list-style-type: none;">
+							<li style="color: rgb(148, 100, 237);">\</li>
+							<li>[ ]</li>
+							<li>{ }</li>
+							<li>( )</li>
+							<li>^</li>
+							<li>$</li>
+							<li>|</li>
+							<li>.</li>
+							<li>?</li>
+							<li>*</li>
+							<li>+</li>
+						</ul>
+					</section>
+
+					<section>
+						<h6>Escaping</h6>
+						<pre>
+							<code data-trim data-noescape>
+								console.log( "Chapter 5.1".match(/\d\.\d/) );   
+								// "5.1" (match!)
+
+								console.log( "Chapter 511".match(/\d\.\d/) );   
+								// null ("\." - loor for a Dot .)
+
+								console.log( "function g()".match(/g\(\)/) );   
+								// "g()"
+
+								console.log( "1\\2".match(/\\/) );              
+								// "\\"	
+							</code>
+						</pre>
+
+					</section>
+
+
+				</section>
+
+				<section>
+					<section>
+						<h2 style="color: cornflowerblue;">Working with Regular Expressions</h2>
+						<h6>Methods of the RegExp object:</h6>
+						<ul>
+							<li>regexp.test(str)</li>
+							<li>regexp.exec(str)</li>
+						</ul>
+						<h6>Methods of the String object:</h6>
+						<ul>
+							<li>str.match(regexp)</li>
+							<li>str.matchAll(regexp)</li>
+							<li>str.replace(str|regexp, str|func)</li>
+							<li>str.replaceAll(str|regexp, str|func)</li>
+							<li>str.search(regexp)</li>
+							<li>str.split(regexp|substr, limit)</li>						
+						</ul>
+					</section>
+					
+					<section>
+						<h2 style="color: cornflowerblue;">regexp.test(str)</h2>
+						<pre>
+							<code data-trim data-noescape>
+								let str = "I love JavaScript";
+
+								// this two tests do the same
+
+								console.log( /love/.test(str) );           // true
+
+								console.log( str.search(/love/) != -1 );   // true
+
+								console.log( /hate/.test(str) );           // false
+							</code>
+						</pre>
+
+					</section>
+
+					<section>
+						<h2 style="color: cornflowerblue;">regexp.exec(str)</h2>
+						<pre>
+							<code data-trim data-noescape>
+								let str = 'Hello, world!';
+								let regexp = /\w+/g; // without flag "g", lastIndex property is ignored
+								regexp.lastIndex = 5; // search from 5th position (from the comma)
+								alert( regexp.exec(str) ); // world								
+								
+								let regexp = /\w+/y;
+								regexp.lastIndex = 5; // search exactly at position 5
+								alert( regexp.exec(str) ); // null
+							</code>
+						</pre>
+
+					</section>
+				</section>
+				<section>
+					<h1>The End</h1>
+				</section>
+
+				
+				
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
